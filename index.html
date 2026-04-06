@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Minha Conexão Back-End</title>
+</head>
+<body>
+    <h1>Minha Conexão Back-End</h1>
+    <button onclick="buscarDados()">Clique para chamar o Servidor</button>
+    <p id="resposta">Aguardando comando...</p>
+
+    <script>
+        async function buscarDados() {
+            try {
+                // Link oficial do seu servidor porta 3000
+                const url = 'https://crispy-winner-7vqqrjw995jfp446-3000.app.github.dev/mensagem';
+                
+                const resposta = await fetch(url);
+                const dados = await resposta.json();
+                
+                document.getElementById('resposta').innerText = dados.texto;
+            } catch (erro) {
+                console.error("Erro:", erro);
+                document.getElementById('resposta').innerText = "Erro ao conectar com o servidor!";
+            }
+        }
+    </script>
+</body>
+</html>
